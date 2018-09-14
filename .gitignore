@@ -2,4 +2,7 @@
 myvenv
 
 # pyc
-pyc_
+*.pyc$
+
+# pycache
+__pycache__
