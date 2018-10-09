@@ -9,7 +9,7 @@ from inform.models import Shop
 def keyboard(request):
     return JsonResponse({
         'type': 'buttons',
-        'buttons': ['1.healing time', '2.developers'],
+        'buttons': ['1.get shop name', '2.developers'],
     })
 
 
@@ -17,8 +17,8 @@ def message(request):
     message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
-    requestMode = return_str.encode('utf-8')  # utf-8형식으로 인코딩하여 한글을 인식
-    if requestMode == '썸톡번역기':
+    requestMode = return_str.encode('utf-8')
+    if requestMode == '1.get shop name':
         return JsonResponse({
             'message': {
                 'text': Shop.objects.all()[0].title
