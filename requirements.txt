@@ -1,0 +1,5 @@
+Django==2.1.1
+django-environ==0.4.5
+pkg-resources==0.0.0
+pytz==2018.5
+
