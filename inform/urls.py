@@ -5,5 +5,5 @@ from .views import message
 
 urlpatterns = [
     url(r'^keyboard/', keyboard),
-    url(r'^message/', message),
+    url(r'^message', message),
 ]

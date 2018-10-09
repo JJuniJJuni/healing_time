@@ -2,7 +2,7 @@ import csv
 import json
 
 from django.http import JsonResponse
-
+from django.views.decorators.csrf import csrf_exempt
 from inform.models import Shop
 
 
@@ -13,8 +13,9 @@ def keyboard(request):
     })
 
 
+@csrf_exempt
 def message(request):
-    message = ((request.body).decode('utf-8'))
+    message = (request.body.decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
     requestMode = return_str.encode('utf-8')
