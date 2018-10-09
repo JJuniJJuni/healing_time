@@ -9,7 +9,7 @@ from inform.models import Shop
 def keyboard(request):
     return JsonResponse({
         'type': 'buttons',
-        'buttons': ['1.get shop name', '2.developers'],
+        'buttons': ['1.shop', '2.developers'],
     })
 
 
@@ -19,13 +19,10 @@ def message(request):
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
     requestMode = return_str.encode('utf-8')
-    if requestMode == '1.get shop name':
+    if requestMode == '1.shop':
         return JsonResponse({
             'message': {
                 'text': Shop.objects.all()[0].title
-            },
-            'keyboard': {
-                'type': 'text'  # 텍스트로 입력받기 위하여 키보드 타입을 text로 설정
             }
         })
 
