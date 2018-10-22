@@ -15,16 +15,19 @@ def keyboard(request):
 
 @csrf_exempt
 def message(request):
-    message = (request.body.decode('utf-8'))
+    message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
-    requestMode = return_str.encode('utf-8')
-    if requestMode == '1.shop':
-        return JsonResponse({
-            'message': {
-                'text': Shop.objects.all()[0].title
-            }
-        })
+
+    return JsonResponse({
+        'message': {
+            'text': "button test : " + return_str
+        },
+        'keyboard': {
+            'type': 'buttons',
+            'buttons': ['1', '2']
+        }
+    })
 
 
 def save_shop_data(path):
