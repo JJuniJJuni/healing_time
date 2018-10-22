@@ -18,7 +18,6 @@ def message(request):
     message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
-
     return JsonResponse({
         'message': {
             'text': "button test : " + return_str
