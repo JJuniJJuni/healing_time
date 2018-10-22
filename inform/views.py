@@ -9,7 +9,7 @@ from inform.models import Shop
 def keyboard(request):
     return JsonResponse({
         'type': 'buttons',
-        'buttons': ['1.shop', '2.developers'],
+        'buttons': ['귀뚜라미', '메뚜기'],
     })
 
 
