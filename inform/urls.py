@@ -4,6 +4,6 @@ from .views import keyboard
 from .views import message
 
 urlpatterns = [
-    url(r'^/', keyboard),
+    url(r'^keyboard/', keyboard),
     url(r'^message', message),
 ]
