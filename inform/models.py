@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Shop(models.Model):
+    place = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     link = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
@@ -11,3 +12,4 @@ class Shop(models.Model):
     road_address = models.CharField(max_length=100)
     mapX = models.CharField(max_length=20)
     mapY = models.CharField(max_length=20)
+    score = models.FloatField(default=0)
