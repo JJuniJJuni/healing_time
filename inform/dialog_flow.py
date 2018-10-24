@@ -29,4 +29,4 @@ def get_answer(text, user_key=123):
 
 
 if __name__ == "__main__":
-    print(get_answer("카페"))
+    print(get_answer("안녕"))

@@ -4,12 +4,13 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from inform.models import Shop
+from inform.dialog_flow import get_answer
 
 
 def keyboard(request):
     return JsonResponse({
-        'type': 'buttons',
-        'buttons': ['귀뚜라미', '메뚜기'],
+        'type': 'text',
+        'content': '안녕하세요 힐링타임 추천 서비스 입니다. 무엇을 도와드릴까요?'
     })
 
 
@@ -20,11 +21,10 @@ def message(request):
     return_str = return_json_str['content']
     return JsonResponse({
         'message': {
-            'text': "button test : " + return_str
+            'text': get_answer(return_str),
         },
         'keyboard': {
-            'type': 'buttons',
-            'buttons': ['1', '2']
+            'type': 'text',
         }
     })
 
