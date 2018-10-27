@@ -17,7 +17,7 @@ def keyboard(request):
 
 @csrf_exempt
 def message(request):
-    message = ((request.body).decode('utf-8'))
+    message = (request.body.decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
     return JsonResponse({
@@ -31,10 +31,10 @@ def message(request):
 
 
 def save_shop_data(path):
-    titles = [shop.title.replace(" ", "") for shop in Shop.objects.all()]
+    shops = [(shop.place, shop.title.replace(" ", "")) for shop in Shop.objects.all()]
     with open(path, mode='r') as csv_file:
         for data in csv.DictReader(csv_file):
-            if data["title"].replace(" ", "") not in titles:
+            if (data['place'] , data["title"].replace(" ", "")) not in shops:
                 Shop.objects.create(place=data['place'], title=data['title'],
                                     link=data['link'],
                                     category=data['category'],
@@ -43,6 +43,31 @@ def save_shop_data(path):
                                     address=data['address'],
                                     road_address=data['roadAddress'],
                                     mapX=data['mapx'], mapY=data['mapy'])
+
+
+def modify_shop_data(path):
+    with open(path, mode='r') as csv_file:
+        for data in csv.DictReader(csv_file):
+            Shop.objects.filter(place=data['place'],
+                                title=data['title']).update(
+                category=data['category'])
+
+
+def check_data(path):
+    names = []
+    titles = {}
+    overwritten = []
+    with open(path, mode='r') as csv_file:
+        for data in csv.DictReader(csv_file):
+            place, title = data['place'], data['title']
+            if (place, title) not in names:
+                names.append((place, title))
+                titles[(place, title)] = 1
+            else:
+                overwritten.append(object)
+                titles[(place, title)] += 1
+    for over in overwritten:
+        print(over)
 
 
 if __name__ == "__main__":
