@@ -12,3 +12,6 @@ __pycache__
 
 # pyc
 *.pyc
+
+# shop_data
+shop_data
