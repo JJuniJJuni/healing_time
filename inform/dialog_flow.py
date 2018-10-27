@@ -1,5 +1,6 @@
-import requests
 import json
+
+import requests
 
 
 def get_answer(text, user_key=123):
@@ -16,7 +17,9 @@ def get_answer(text, user_key=123):
 
     dialogflow_url = 'https://api.dialogflow.com/v1/query?v=20150910'
 
-    res = requests.post(dialogflow_url, data=json.dumps(data_send), headers=data_header)
+    res = requests.post(dialogflow_url,
+                        data=json.dumps(data_send),
+                        headers=data_header)
 
     if res.status_code != requests.codes.ok:
         print(res.status_code)

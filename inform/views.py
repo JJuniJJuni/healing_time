@@ -3,8 +3,9 @@ import json
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from inform.models import Shop
+
 from inform.dialog_flow import get_answer
+from inform.models import Shop
 
 
 def keyboard(request):
