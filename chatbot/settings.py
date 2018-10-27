@@ -74,12 +74,18 @@ WSGI_APPLICATION = 'chatbot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+if 'RDS_HOSTNAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ['gud305'],
+            'USER': os.environ['gud305'],
+            'PASSWORD': os.environ['rnqhdtks1!'],
+            'HOST': os.environ['chatbot.c23eln8cblhd.us-east-2.rds.amazonaws.com'],
+            'PORT': os.environ['3306'],
+        }
     }
-}
 
 
 # Password validation
