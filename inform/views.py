@@ -20,9 +20,20 @@ def message(request):
     message = (request.body.decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
+    answer = get_answer(return_str)
+    if '주변에 갈만한 곳' in answer:
+        answer = '건대 주변에는 VR 체험, 보드 게임방, 고양이 카페들이 있어요!!'
+    elif '고양이' in answer:
+        titles = Shop.objects.filter(category='테마카페>고양이카페')
+        answer = '건대 주변 고양이 카페로는'
+        for idx, title in enumerate(titles):
+            answer += '\n{}title'.format(idx+1)
+        answer += '\n위와 같이 있네요!!'
+    elif '데이트 추천' in answer:
+        answer = '데이트로는 단 둘이 보드 게임방 어떠세요?'
     return JsonResponse({
         'message': {
-            'text': get_answer(return_str),
+            'text': answer,
         },
         'keyboard': {
             'type': 'text',
