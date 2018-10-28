@@ -24,10 +24,10 @@ def message(request):
     if '주변에 갈만한 곳' in answer:
         answer = '건대 주변에는 VR 체험, 보드 게임방, 고양이 카페들이 있어요!!'
     elif '고양이' in answer:
-        titles = Shop.objects.filter(category='테마카페>고양이카페')
+        shops = Shop.objects.filter(place='건대', category='테마카페>고양이카페')
         answer = '건대 주변 고양이 카페로는'
-        for idx, title in enumerate(titles):
-            answer += '\n{0}{1}'.format(idx+1, title)
+        for idx, shop in enumerate(shops):
+            answer += '\n{0}.{1}'.format(idx+1, shop.title)
         answer += '\n위와 같이 있네요!!'
     elif '데이트 추천' in answer:
         answer = '데이트로는 단 둘이 보드 게임방 어떠세요?'
