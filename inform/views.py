@@ -27,7 +27,7 @@ def message(request):
         titles = Shop.objects.filter(category='테마카페>고양이카페')
         answer = '건대 주변 고양이 카페로는'
         for idx, title in enumerate(titles):
-            answer += '\n{}title'.format(idx+1)
+            answer += '\n{0}{1}'.format(idx+1, title)
         answer += '\n위와 같이 있네요!!'
     elif '데이트 추천' in answer:
         answer = '데이트로는 단 둘이 보드 게임방 어떠세요?'
