@@ -23,7 +23,12 @@ def message(request):
     answer = get_answer(return_str)
     if '주변에 갈만한 곳' in answer:
         answer = '건대 주변에는 VR 체험, 보드 게임방, 고양이 카페들이 있어요!!'
-    elif '고양이' in answer:
+    elif '다락방' in answer:
+        answer = 'https://map.naver.com/?mapmode=0&lng=723' \
+                 'b2d03d073e2849ec2ea83f18361b1&pinId=1951264' \
+                 '1&pinType=site&lat=56c918fb541e28ad8f4efb21ed' \
+                 'a1cf3a&dlevel=11&enc=b64'
+    elif '강아지' in answer:
         shops = Shop.objects.filter(place='건대', category='테마카페>고양이카페')
         answer = '건대 주변 고양이 카페로는'
         for idx, shop in enumerate(shops):
