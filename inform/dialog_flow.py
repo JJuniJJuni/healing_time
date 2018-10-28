@@ -4,6 +4,9 @@ import requests
 
 
 def get_answer(text, user_key=123):
+    if '다락방' in text and '어디' in text:
+        answer = '고양이 다락방 위치'
+        return answer
     data_send = {
         'query': text,
         'sessionId': user_key,
