@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from inform.dialog_flow import get_answer
+from inform.message import print_categories
 
 
 def keyboard(request):
@@ -18,7 +19,9 @@ def message(request):
     message = (request.body.decode('utf-8'))
     return_json_str = json.loads(message)
     return_str = return_json_str['content']
-    answer = get_answer(return_str)
+    intent, answer = get_answer(return_str), ''
+    if '주변' in intent:
+        answer = print_categories(intent)
     return JsonResponse({
         'message': {
             'text': answer,
