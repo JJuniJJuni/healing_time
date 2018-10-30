@@ -10,6 +10,13 @@ class Shop(models.Model):
     telephone = models.CharField(max_length=20)
     address = models.CharField(max_length=100)
     road_address = models.CharField(max_length=100)
-    mapX = models.CharField(max_length=20)
-    mapY = models.CharField(max_length=20)
+    address_url = models.CharField(max_length=100)
     score = models.FloatField(default=0)
+
+
+class Review(models.Model):
+    place = models.CharField(max_length=100)
+    url = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    review = models.TextField()
+    shop = models.ForeignKey(Shop, on_delete=True)
