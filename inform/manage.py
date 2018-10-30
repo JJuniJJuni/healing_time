@@ -21,12 +21,13 @@ def save_shop_data(path):
 
 def save_review_data(path):
     titles = [(shop.id, shop.title.replace(' ', '')) for shop in Shop.objects.all()]
+    etc = Shop.objects.get(title='기타')
     with open(path, mode='r') as csv_file:
         for data in csv.DictReader(csv_file):
             try:
                 idx = [title[1] for title in titles].index(data['shop'].replace(' ', ''))
             except ValueError:
-                returned_shop = None
+                returned_shop = etc
             else:
                 returned_shop = Shop.objects.get(id=titles[idx][0])
             Review.objects.create(place=data['place'], title=data['shop'],
@@ -43,11 +44,16 @@ def modify_shop_data(path):
 
 
 def check_review_data(path):
-    saved_shops = [(shop.place, shop.title.replace(' ', '')) for shop in Shop.objects.all()]
+    count = 0
     with open(path, mode='r') as csv_file:
         for data in csv.DictReader(csv_file):
-            if (data['place'], data['shop'].replace(' ', '')) not in saved_shops:
-                print('현재 매칭되지 않는 Reivew 데이터는', data['place'], data['shop'])
+            count += 1
+            try:
+                shop = Review.objects.filter(url=data['url'])
+                print('현재 데이터는 {} 지역 {} 입니다.'.format(data['place'], data['shop']))
+            except KeyError:
+                print('없는 데이터는 {} 지역 {} 입니다.'.format(data['place'], data['shop']))
+        print('blog_review.csv 파일 갯수는 {}입니다'.format(count))
 
 
 if __name__ == '__main__':
