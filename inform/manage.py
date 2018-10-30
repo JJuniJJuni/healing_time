@@ -1,6 +1,7 @@
 import csv
 
 from inform.models import Shop
+from inform.models import Review
 
 
 def save_shop_data(path):
@@ -18,6 +19,21 @@ def save_shop_data(path):
                                     address_url='')
 
 
+def save_review_data(path):
+    titles = [(shop.id, shop.title.replace(' ', '')) for shop in Shop.objects.all()]
+    with open(path, mode='r') as csv_file:
+        for data in csv.DictReader(csv_file):
+            try:
+                idx = [title[1] for title in titles].index(data['shop'].replace(' ', ''))
+            except ValueError:
+                returned_shop = None
+            else:
+                returned_shop = Shop.objects.get(id=titles[idx][0])
+            Review.objects.create(place=data['place'], title=data['shop'],
+                                  url=data['url'], shop=returned_shop,
+                                  review=data['review'])
+
+
 def modify_shop_data(path):
     with open(path, mode='r') as csv_file:
         for data in csv.DictReader(csv_file):
@@ -26,29 +42,12 @@ def modify_shop_data(path):
                 category=data['category'])
 
 
-def check_data(path):
-    names = []
-    titles = {}
-    overwritten = []
-    with open(path, mode='r') as csv_file:
-        for data in csv.DictReader(csv_file):
-            place, title = data['place'], data['title']
-            if (place, title) not in names:
-                names.append((place, title))
-                titles[(place, title)] = 1
-            else:
-                overwritten.append(object)
-                titles[(place, title)] += 1
-    for over in overwritten:
-        print(over)
-
-
 def check_review_data(path):
-    saved_shops = [(shop.place, shop.title) for shop in Shop.objects.all()]
+    saved_shops = [(shop.place, shop.title.replace(' ', '')) for shop in Shop.objects.all()]
     with open(path, mode='r') as csv_file:
         for data in csv.DictReader(csv_file):
-            if (data['place'], data['shop'].replace(' ', '')) in saved_shops:
-                print('현재 매칭되는 Reivew 데이터는', data['place'], data['shop'])
+            if (data['place'], data['shop'].replace(' ', '')) not in saved_shops:
+                print('현재 매칭되지 않는 Reivew 데이터는', data['place'], data['shop'])
 
 
 if __name__ == '__main__':
