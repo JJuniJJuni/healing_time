@@ -23,4 +23,4 @@ def print_shops(question):
     shops = [shop for shop in Shop.objects.filter(place=place) if shop.category.endswith(category)]
     for idx, shop in enumerate(shops):
         message += '\n{}.{}'.format(idx+1, shop.title)
-    print(message)
+    return message
