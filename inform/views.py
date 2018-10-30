@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from inform.dialog_flow import get_answer
 from inform.message import print_categories
+from inform.message import print_shops
 
 
 def keyboard(request):
@@ -22,11 +23,12 @@ def message(request):
     intent, answer = get_answer(return_str), ''
     if '주변' in intent:
         answer = print_categories(intent)
+    elif '주제' in intent:
+        answer = print_shops(intent)
     return JsonResponse({
         'message': {
             'text': answer,
         },
-
         'keyboard': {
             'type': 'text',
         }
