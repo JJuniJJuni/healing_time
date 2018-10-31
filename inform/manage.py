@@ -73,12 +73,20 @@ def check_score_data():
         print(shop.title, shop.score, review_count, current_score)
 
 
-def print_same_title():
+def check_same_title():
     for shop in Shop.objects.all():
         shops = Shop.objects.filter(title=shop.title)
         if len(shops) >= 2:
             for same_shop in shops:
                 print('place: {}, title: {}'.format(same_shop.place, same_shop.title))
+
+
+def save_address_url(path):
+    with open(path, mode='r') as csv_file:
+        for data in csv.DictReader(csv_file):
+            for shop in Shop.objects.filter(title=data['title']):
+                shop.info_url, shop.address_url = data['infolink'], data['maplink']
+                shop.save()
 
 
 if __name__ == '__main__':
