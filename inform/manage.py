@@ -1,4 +1,5 @@
 import csv
+import math
 
 from inform.models import Shop
 from inform.models import Review
@@ -54,6 +55,22 @@ def check_review_data(path):
             except KeyError:
                 print('없는 데이터는 {} 지역 {} 입니다.'.format(data['place'], data['shop']))
         print('blog_review.csv 파일 갯수는 {}입니다'.format(count))
+
+
+def give_score():
+    origin = 3.6
+    for shop in Shop.objects.all():
+        review_count = len(Review.objects.filter(shop=shop))
+        shop.score = round(origin + (review_count * 0.05), 2)
+        shop.save()
+
+
+def check_score_data():
+    origin = 3.6
+    for shop in Shop.objects.all():
+        review_count = len(Review.objects.filter(shop=shop))
+        current_score = round(origin + (review_count * 0.05), 2)
+        print(shop.title, shop.score, review_count, current_score)
 
 
 if __name__ == '__main__':
