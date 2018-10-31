@@ -73,5 +73,13 @@ def check_score_data():
         print(shop.title, shop.score, review_count, current_score)
 
 
+def print_same_title():
+    for shop in Shop.objects.all():
+        shops = Shop.objects.filter(title=shop.title)
+        if len(shops) >= 2:
+            for same_shop in shops:
+                print('place: {}, title: {}'.format(same_shop.place, same_shop.title))
+
+
 if __name__ == '__main__':
     print(check_review_data('../shop_data/건대홍대강남_blog_review_181028_ansi'))
