@@ -11,6 +11,7 @@ class Shop(models.Model):
     address = models.CharField(max_length=100)
     road_address = models.CharField(max_length=100)
     address_url = models.CharField(max_length=400)
+    info_url = models.CharField(max_length=400)
     score = models.FloatField(default=0)
 
 
