@@ -34,5 +34,5 @@ def print_shop_info(question):
     place, title = tokens[0], ' '.join(tokens[1:-1])
     shop = Shop.objects.get(place=place, title=title)
     message = "{place} 지역 '{title}'의 정보는 전화번호, 주소, 후기정보가 있어요!!" \
-              " 알고 싶으신 것을 입력해주세요!!".format(place=shop.place, title=shop.title)
+              "\n알고 싶으신 것을 입력해주세요!!".format(place=shop.place, title=shop.title)
     return message

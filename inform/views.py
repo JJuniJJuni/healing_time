@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from inform.dialog_flow import get_answer
 from inform.message import print_categories
+from inform.message import print_shop_info
 from inform.message import print_shops
 
 
