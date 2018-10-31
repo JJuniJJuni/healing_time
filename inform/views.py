@@ -25,6 +25,8 @@ def message(request):
         answer = print_categories(intent)
     elif '주제' in intent:
         answer = print_shops(intent)
+    elif '정보' in intent:
+        answer = print_shop_info(intent)
     else:
         answer = intent
     return JsonResponse({

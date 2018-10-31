@@ -23,7 +23,16 @@ def print_shops(question):
     shops = [shop for shop in Shop.objects.filter(place=place, category__endswith=category)]
     shops = sorted(shops, key=lambda shop: shop.score, reverse=True)
     for shop in shops:
-        message += "\n-{}(평점: {}/5)".format(shop.title, shop.score)
+        message += "\n-{} (평점: {}/5)".format(shop.title, shop.score)
     message += '\n궁금하신 매장 이름을 입력해주세요!!'
     # print(message)
+    return message
+
+
+def print_shop_info(question):
+    tokens = question.split()
+    place, title = tokens[0], ' '.join(tokens[1:-1])
+    shop = Shop.objects.get(place=place, title=title)
+    message = "{place} 지역 '{title}'의 정보는 전화번호, 주소, 후기정보가 있어요!!" \
+              " 알고 싶으신 것을 입력해주세요!!".format(place=shop.place, title=shop.title)
     return message
