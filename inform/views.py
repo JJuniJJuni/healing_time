@@ -38,5 +38,3 @@ def message(request):
             'type': 'text',
         }
     })
-
-
