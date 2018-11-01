@@ -19,5 +19,6 @@ class Review(models.Model):
     place = models.CharField(max_length=100)
     url = models.CharField(max_length=400)
     title = models.CharField(max_length=100)
+    review_title = models.CharField(max_length=200)
     review = models.TextField()
     shop = models.ForeignKey(Shop, on_delete=True)

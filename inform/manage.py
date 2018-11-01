@@ -32,6 +32,7 @@ def save_review_data(path):
             else:
                 returned_shop = Shop.objects.get(id=titles[idx][0])
             Review.objects.create(place=data['place'], title=data['shop'],
+                                  review_title=data['title'],
                                   url=data['url'], shop=returned_shop,
                                   review=data['review'])
 
@@ -87,6 +88,14 @@ def save_address_url(path):
             for shop in Shop.objects.filter(title=data['title']):
                 shop.info_url, shop.address_url = data['infolink'], data['maplink']
                 shop.save()
+
+
+def save_review_title(path):
+    with open(path, mode='r') as csv_file:
+        for data in csv.DictReader(csv_file):
+            for review in Review.objects.filter(url=data['url']):
+                review.review_title = data['title']
+                review.save()
 
 
 if __name__ == '__main__':
