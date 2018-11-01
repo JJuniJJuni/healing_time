@@ -90,6 +90,11 @@ def save_address_url(path):
                 shop.save()
 
 
+def check_review_url_and_title(shop_title):
+    for review in Review.objects.filter(title=shop_title):
+        print(review.review_title, review.url)
+
+
 def save_review_title(path):
     with open(path, mode='r') as csv_file:
         for data in csv.DictReader(csv_file):

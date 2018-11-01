@@ -54,5 +54,8 @@ def print_review(question):
     reviews = Review.objects.filter(title=shop_title)
     message = '{shop_title}의 후기 정보들은 다음과 같아요!!'.format(shop_title=shop_title)
     for review in reviews:
-        message += '\n{title}\n{url}'.format(id=review.id, title=review.review_title, url=review.url)
+        changed_review_title = review.review_title.replace('\n', '')
+        changed_url = review.url.replace('\n', '')
+        message += '\n\n{title}\n{url}'.format(id=review.id, title=changed_review_title,
+                                               url=changed_url)
     return message
