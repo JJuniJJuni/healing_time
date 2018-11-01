@@ -54,6 +54,7 @@ def print_review(question):
     data = question.split()
     shop_title = ' '.join(data[1:-1])
     reviews = Review.objects.filter(title=shop_title)
+    print(reviews)
     message = '{shop_title}의 후기들은 다음과 같아요!! 전체보기를 누르시면 보기 편해요!!'.format(shop_title=shop_title)
     for review in reviews:
         changed_review_title = review.review_title.replace('\n', '')
@@ -80,7 +81,7 @@ def print_date_places(question):
         message_dict.pop('VR')
     category = random.choice(list(message_dict.keys()))
     message = message_dict[category]
-    message += '\n' + print_shops(place + ' 주제' + ' {}'.format(category) + ' 목록')
+    message += '\n\n' + print_shops(place + ' 주제' + ' {}'.format(category) + ' 목록')
     # print(message)
     return message
 
@@ -94,6 +95,6 @@ def print_friend_places(question):
         message_dict.pop('VR')
     category = random.choice(list(message_dict.keys()))
     message = message_dict[category]
-    message += '\n' + print_shops(place + ' 주제' + ' {}'.format(category) + ' 목록')
+    message += '\n\n' + print_shops(place + ' 주제' + ' {}'.format(category) + ' 목록')
     # print(message)
     return message
