@@ -55,7 +55,7 @@ def print_review(question):
     message = '{shop_title}의 후기 정보들은 다음과 같아요!!'.format(shop_title=shop_title)
     for review in reviews:
         changed_review_title = review.review_title.replace('\n', '')
-        parenthesises = re.findall('\[\w+\]', changed_review_title)
+        parenthesises = re.findall('\[.*\]', changed_review_title)
         for parenthesis in parenthesises:
             changed_review_title = changed_review_title.replace(parenthesis, '')
         changed_url = review.url.replace('\n', '')
