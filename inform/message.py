@@ -39,12 +39,13 @@ def print_shop_info(question):
               "\n\n[전화번호]\n{telephone}" \
               "\n\n[지도]\n{map_url}" \
               "\n\n가격, 이용 시간 등의 정보는 다음 url을 참조하세요!!" \
-              "\n{info_url}" \
-              "\n\n후기 정보가 궁금하시면 '후기'라고 입력해주세요!!".format(place=shop.place,
-                                                        title=shop.title,
-                                                        telephone=shop.telephone,
-                                                        map_url=shop.address_url,
-                                                        info_url=shop.info_url)
+              "\n{info_url}".format(place=shop.place,
+                                    title=shop.title,
+                                    telephone=shop.telephone,
+                                    map_url=shop.address_url,
+                                    info_url=shop.info_url)
+    if len(Review.objects.filter(shop=shop)):
+        message += "\n\n후기 정보가 궁금하시면 '후기'라고 입력해주세요!!"
     print(message)
     return message
 
