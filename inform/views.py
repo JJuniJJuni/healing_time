@@ -29,7 +29,7 @@ def message(request):
         answer = print_shops(intent)
     elif '정보' in intent:
         answer = print_shop_info(intent)
-    elif intent[-1] == '후기':
+    elif intent.endswith('후기'):
         answer = print_review(intent)
     elif intent == '[empty response]':
         answer = '잘못 알아들었습니다. 제대로 말씀해주세요'
