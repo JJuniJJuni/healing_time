@@ -52,7 +52,7 @@ def print_review(question):
     data = question.split()
     shop_title = ' '.join(data[1:-1])
     reviews = Review.objects.filter(title=shop_title)
-    message = '{shop_title}의 후기 정보들은 다음과 같아요!!'.format(shop_title=shop_title)
+    message = '{shop_title}의 후기들은 다음과 같아요!! 전체보기를 누르시면 보기 편해요!!'.format(shop_title=shop_title)
     for review in reviews:
         changed_review_title = review.review_title.replace('\n', '')
         parenthesises = re.findall('\[.*\]', changed_review_title)
@@ -66,3 +66,11 @@ def print_review(question):
 
 def print_places():
     return '강남, 홍대, 건대 중에 한 군데를 입력해주시겠어요?'
+
+
+def print_date_places(question):
+    pass
+
+
+def print_friend_places(question):
+    pass

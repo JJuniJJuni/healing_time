@@ -9,6 +9,8 @@ from inform.message import print_shop_info
 from inform.message import print_shops
 from inform.message import print_review
 from inform.message import print_places
+from inform.message import print_date_places
+from inform.message import print_friend_places
 
 
 def keyboard(request):
@@ -36,6 +38,10 @@ def message(request):
         answer = '잘못 알아들었습니다. 제대로 말씀해주세요'
     elif intent.endswith('지역 선택'):
         answer = print_places()
+    elif intent.endswith('데이트 추천'):
+        answer = print_date_places(intent)
+    elif intent.endswith('친구 추천'):
+        answer = print_friend_places(intent)
     else:
         answer = intent
     return JsonResponse({
