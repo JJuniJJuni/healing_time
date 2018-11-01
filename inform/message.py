@@ -62,3 +62,7 @@ def print_review(question):
         message += '\n\n{title}\n{url}'.format(id=review.id, title=changed_review_title,
                                                url=changed_url)
     return message
+
+
+def print_places():
+    return '강남, 홍대, 건대 중에 한 군데를 입력해주시겠어요?'
