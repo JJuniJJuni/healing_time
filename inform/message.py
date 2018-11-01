@@ -70,19 +70,29 @@ def print_places():
 
 
 def print_date_places(question):
+    place = question.split()[0]
     message_dict = {'고양이카페': '고양이들과 함께하는 데이트 어떠세요?',
                     '보드카페': '연인과 심심하면 어떡하시냐구요? 다양한 보드게임으로 고민을 해결해보세요!!',
                     '만화방': '좋아하는 연인과 함께 만화책 보기!! 두근두근 하지 않으세요?',
                     'VR': '가상 현실에서도 연인과 함께 해야하지 않을까요?'}
-    if question.startswith('홍대'):
+    if place == '홍대':
         message_dict.pop('VR')
-    return message_dict[random.choice(list(message_dict.keys()))]
+    category = random.choice(list(message_dict.keys()))
+    message = message_dict[category]
+    message += '\n' + print_shops(place + ' 주제' + ' {}'.format(category) + ' 목록')
+    # print(message)
+    return message
 
 
 def print_friend_places(question):
+    place = question.split()[0]
     message_dict = {'보드카페': '친구들과 심심할 때는 보드게임 한 판!! 어떠세요?',
                     'VR': '현실에서의 우정은 가상까지!! VR 체험 한번 가실까요?',
                     '멀티방': '한가지만 하기에는 지루할 때!! 역시 멀티방이죠?'}
     if question.startswith('홍대'):
         message_dict.pop('VR')
-    return message_dict[random.choice(list(message_dict.keys()))]
+    category = random.choice(list(message_dict.keys()))
+    message = message_dict[category]
+    message += '\n' + print_shops(place + ' 주제' + ' {}'.format(category) + ' 목록')
+    # print(message)
+    return message
