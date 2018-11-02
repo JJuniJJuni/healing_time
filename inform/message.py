@@ -39,16 +39,17 @@ def print_shop_info(question):
         if shop.title.replace(' ', '') == title.replace(' ', ''):
             target = shop
             break
+    phone_number = target.telephone if target.telephone else '죄송합니다ㅠ 전화번호가 검색되지 않네요'
     message = "{place} 지역 '{title}'의 전화번호와 주소는 다음과 같아요!!" \
               "\n\n[전화번호]\n{telephone}" \
               "\n\n[지도]\n{map_url}" \
               "\n\n가격, 이용 시간 등의 정보는 다음 url을 참조하세요!!" \
               "\n{info_url}".format(place=target.place,
                                     title=target.title,
-                                    telephone=target.telephone,
+                                    telephone=phone_number,
                                     map_url=target.address_url,
                                     info_url=target.info_url)
-    if len(Review.objects.filter(shop=shop)):
+    if len(Review.objects.filter(shop=target)):
         message += "\n\n후기 정보가 궁금하시면 '후기'라고 입력해주세요!!"
     print(message)
     return message
