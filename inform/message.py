@@ -54,6 +54,8 @@ def print_review(question):
     data = question.split()
     shop_title = ' '.join(data[1:-1])
     reviews = Review.objects.filter(title=shop_title)
+    if not len(reviews):
+        return "죄송합니다. '{}' 매장에는 후기가 아직 없어요ㅜ".format(shop_title)
     print(reviews)
     message = '{shop_title}의 후기들은 다음과 같아요!! 전체보기를 누르시면 보기 편해요!!'.format(shop_title=shop_title)
     for review in reviews:

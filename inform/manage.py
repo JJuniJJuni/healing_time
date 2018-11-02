@@ -103,5 +103,19 @@ def save_review_title(path):
                 review.save()
 
 
+def save_shop_specific_info(path, info):
+    shops = [shop.title for shop in Shop.objects.all()]
+    with open(path, mode='r') as csv_file:
+        for data in csv.DictReader(csv_file):
+            if data['title'] not in shops:
+                print(data['title'])
+            # try:
+            #     shop = Shop.objects.get(title=data['title'])
+            # except :
+            #     print(data['title'])
+            # shop.telephone = data['telephone']
+            # shop.save()
+
+
 if __name__ == '__main__':
     print(check_review_data('../shop_data/건대홍대강남_blog_review_181028_ansi'))
