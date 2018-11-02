@@ -103,11 +103,12 @@ def save_review_title(path):
                 review.save()
 
 
-def save_shop_specific_info(path, info):
+def save_shop_specific_info(path):
     with open(path, mode='r') as csv_file:
         for data in csv.DictReader(csv_file):
             shop = Shop.objects.get(title=data['title'])
-            shop.telephone = data['telephone']
+            shop.address = data['address']
+            shop.road_address = data['roadAddress']
             shop.save()
 
 
