@@ -50,12 +50,14 @@ def check_review_data(path):
     with open(path, mode='r') as csv_file:
         for data in csv.DictReader(csv_file):
             count += 1
-            try:
-                shop = Review.objects.filter(url=data['url'])
-                print('현재 데이터는 {} 지역 {} 입니다.'.format(data['place'], data['shop']))
-            except KeyError:
-                print('없는 데이터는 {} 지역 {} 입니다.'.format(data['place'], data['shop']))
-        print('blog_review.csv 파일 갯수는 {}입니다'.format(count))
+    print(count)
+        #     count += 1
+        #     try:
+        #         shop = Review.objects.filter(url=data['url'])
+        #         print('현재 데이터는 {} 지역 {} 입니다.'.format(data['place'], data['shop']))
+        #     except KeyError:
+        #         print('없는 데이터는 {} 지역 {} 입니다.'.format(data['place'], data['shop']))
+        # print('blog_review.csv 파일 갯수는 {}입니다'.format(count))
 
 
 def give_score():

@@ -11,6 +11,7 @@ from inform.message import print_review
 from inform.message import print_places
 from inform.message import print_date_places
 from inform.message import print_friend_places
+from inform.message import print_family_places
 
 
 def keyboard(request):
@@ -42,6 +43,8 @@ def message(request):
         answer = print_date_places(intent)
     elif intent.endswith('친구 추천'):
         answer = print_friend_places(intent)
+    elif intent.endswith('가족 추천'):
+        answer = print_family_places(intent)
     else:
         answer = intent
     return JsonResponse({
