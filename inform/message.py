@@ -111,7 +111,8 @@ def print_family_places(question):
     place = question.split()[0]
     message_dict = {'보드카페': '가족끼리 즐거운 보드게임 한 판!! 어떠세요?',
                     'VR': '가족과의 재밌는 시간!! VR 체험 한번 가실까요?',
-                    '멀티방': '한가지만 하기에는 지루할 때!! 역시 멀티방이죠?'}
+                    '멀티방': '한가지만 하기에는 지루할 때!! 역시 멀티방이죠?',
+                    '만화방': '가족과의 만화책 한권으로 즐거운 시간 보내세요!!',}
     if question.startswith('홍대'):
         message_dict.pop('VR')
     category = random.choice(list(message_dict.keys()))
