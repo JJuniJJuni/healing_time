@@ -45,6 +45,8 @@ def message(request):
         answer = print_friend_places(intent)
     elif intent.endswith('가족 추천'):
         answer = print_family_places(intent)
+    elif intent == '':
+        answer = "'건대 주변 매장 추천'이라고 해보시겠어요?"
     else:
         answer = intent
     return JsonResponse({
