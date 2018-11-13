@@ -120,3 +120,14 @@ def print_family_places(question):
     message += '\n\n' + print_shops(place + ' 주제' + ' {}'.format(category) + ' 목록')
     # print(message)
     return message
+
+
+def print_exception():
+    message = "죄송해요ㅜㅜ 문장을 이해 할 수가 없네요\n" \
+              "다음과 같은 예시로 해보시겠어요?\n" \
+              "-건대에 있는 매장을 알고 싶을 때?\n" \
+              "->건대 주변 매장 좀 알려줘(강남,홍대도 가능해요!!)\n" \
+              "-데이트 하고 싶을 때?\n" \
+              "->데이트 명소 추천해줘(친구, 가족도 가능해요!!)"
+    print(message)
+    return message

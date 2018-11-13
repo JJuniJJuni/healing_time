@@ -12,6 +12,7 @@ from inform.message import print_places
 from inform.message import print_date_places
 from inform.message import print_friend_places
 from inform.message import print_family_places
+from inform.message import print_exception
 
 
 def keyboard(request):
@@ -46,7 +47,7 @@ def message(request):
     elif intent.endswith('가족 추천'):
         answer = print_family_places(intent)
     elif intent == '':
-        answer = "'건대 주변 매장 추천'이라고 해보시겠어요?"
+        answer = print_exception()
     else:
         answer = intent
     return JsonResponse({
